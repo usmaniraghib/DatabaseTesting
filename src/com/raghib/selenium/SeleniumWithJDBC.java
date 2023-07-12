@@ -6,23 +6,37 @@ import java.sql.SQLException;
 import java.sql.Connection;
 import java.sql.Statement;
 import java.time.Duration;
-import java.util.List;
 import java.util.Scanner;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+/*
+
+Install mysql into your machine.
+
+CREATE DATABASE qadbt;
+
+CREATE TABLE qadbt.gmaillogin (
+    username varchar(45),
+    password varchar(45)
+);
+
+SELECT * FROM qadbt.gmaillogin;
+
+INSERT INTO `qadbt`.`gmaillogin` (`username`, `password`) VALUES ('javaprogrammers786@gmail.com', 'xsw2@WSX');
+ 
+*/
+
 public class SeleniumWithJDBC {
 
 	public static void main(String[] args) throws SQLException, InterruptedException {
-		// databaseConnectionTest();
-		// gmailLoginTest();
-		kvsLoginTest();
+		databaseConnectionTest();
+		//gmailLoginTest();
+		//kvsLoginTest();
 	}
 
 	public static String databseURL = "jdbc:mysql://localhost:3306/qadbt";
@@ -94,12 +108,12 @@ public class SeleniumWithJDBC {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(kvsPasswordXPath)));
 			driver.findElement(By.xpath(kvsPasswordXPath)).sendKeys(resultSetObject.getString(tableColumnTwo));
 
-			Scanner scannerObject = new Scanner(System.in);
-			System.out.print("Please Enter The Captcha : ");
-			String captchaResult = scannerObject.nextLine();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(kvsCaptchaXPath)));
-			driver.findElement(By.xpath(kvsCaptchaXPath)).sendKeys(captchaResult);
-
+			try (Scanner scannerObject = new Scanner(System.in)) {
+				System.out.print("Please Enter The Captcha : ");
+				String captchaResult = scannerObject.nextLine();
+				wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(kvsCaptchaXPath)));
+				driver.findElement(By.xpath(kvsCaptchaXPath)).sendKeys(captchaResult);
+			}
 			driver.findElement(By.xpath(kvsSigninButton)).click();
 		}
 		Thread.sleep(10000);
