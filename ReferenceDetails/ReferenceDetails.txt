@@ -1,0 +1,14 @@
+Install mysql into your machine.
+
+CREATE DATABASE qadbt;
+
+CREATE TABLE qadbt.gmaillogin (
+    username varchar(45),
+    password varchar(45)
+);
+
+SELECT * FROM qadbt.gmaillogin;
+
+INSERT INTO `qadbt`.`gmaillogin` (`username`, `password`) VALUES ('javaprogrammers786@gmail.com', 'xxxxxxx');
+
+SELECT * FROM qadbt.gmaillogin;

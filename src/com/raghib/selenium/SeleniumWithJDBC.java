@@ -14,23 +14,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-/*
-
-Install mysql into your machine.
-
-CREATE DATABASE qadbt;
-
-CREATE TABLE qadbt.gmaillogin (
-    username varchar(45),
-    password varchar(45)
-);
-
-SELECT * FROM qadbt.gmaillogin;
-
-INSERT INTO `qadbt`.`gmaillogin` (`username`, `password`) VALUES ('javaprogrammers786@gmail.com', 'xsw2@WSX');
- 
-*/
-
 public class SeleniumWithJDBC {
 
 	public static void main(String[] args) throws SQLException, InterruptedException {
